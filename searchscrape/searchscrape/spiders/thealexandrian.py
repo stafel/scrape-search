@@ -7,4 +7,7 @@ class ThealexandrianSpider(scrapy.Spider):
     start_urls = ["https://thealexandrian.net"]
 
     def parse(self, response):
-        pass
+        articles = response.css("div.item")
+        for article in articles:
+            print(article.css("div.itemhead").extract_first().strip())
+            print(article.css("div.storycontent").extract_first().strip())
