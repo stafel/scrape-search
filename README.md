@@ -36,3 +36,11 @@ db.createUser({ user: "scrapeUser", pwd: passwordPrompt(), roles: [ { role: "rea
 ```
 
 Then set the same data in the searchscrape/searchscrape/config.py constants
+
+# Run
+
+In the searchscrape directory run the program with 
+
+```
+scrapy crawl thealexandrian
+```

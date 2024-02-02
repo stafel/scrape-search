@@ -8,18 +8,19 @@ MONGO_PORT = 27017
 MONGO_UNAME = "scse"
 MONGO_PASSWORD = "geheim"
 MONGO_DB = "scse"
-MONOG_COLLECTION = "scrape"
+MONGO_COLLECTION = "scrape"
+MONGO_AUTH_MECH = 'SCRAM-SHA-256'
 
 def get_db():
     """Returns mongo db with default settings"""
 
-    client = MongoClient(MONGO_HOST, MONGO_PORT, username=MONGO_UNAME, password=MONGO_PASSWORD)
+    client = MongoClient(MONGO_HOST, MONGO_PORT, username=MONGO_UNAME, password=MONGO_PASSWORD, authSource=MONGO_DB, authMechanism=MONGO_AUTH_MECH)
     return client.get_database(MONGO_DB)
 
 def get_collection():
     """Returns mongo collection for scraper"""
 
-    return get_db()[MONOG_COLLECTION]
+    return get_db()[MONGO_COLLECTION]
 
 def _setup_db(root_uname, root_pwd):
     """Creates database and user"""
