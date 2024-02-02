@@ -65,6 +65,7 @@ ROBOTSTXT_OBEY = True
 #ITEM_PIPELINES = {
 #    "searchscrape.pipelines.SearchscrapePipeline": 300,
 #}
+ITEM_PIPELINES = {'searchscrape.pipelines.MongoDBPipeline': 100}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
