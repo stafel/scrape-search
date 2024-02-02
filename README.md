@@ -34,3 +34,5 @@ db.auth("root")
 use scse
 db.createUser({ user: "scrapeUser", pwd: passwordPrompt(), roles: [ { role: "readWrite", db: "scse" } ]})
 ```
+
+Then set the same data in the searchscrape/searchscrape/config.py constants
