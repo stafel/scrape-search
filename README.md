@@ -27,7 +27,7 @@ You need to set up a new user to use the correct database setup in main.py
 Create the necessary user and db with the python script from the searchscrape/searchscrape subfolder
 
 ```
-python3 -c 'from .config import setup_db; setup_db()'
+python3 -c 'from config import setup_db; setup_db()'
 ```
 
 Alternative: Connect to the db container and use *mongosh* to create the necessary user and db.
@@ -41,10 +41,30 @@ db.createUser({ user: "scrapeUser", pwd: passwordPrompt(), roles: [ { role: "rea
 
 Then set the same data in the searchscrape/searchscrape/config.py constants
 
-# Run
+# Run scraper to index
 
 In the searchscrape directory run the program with 
 
 ```
 scrapy crawl thealexandrian
 ```
+
+# Run query
+
+Work in Progress
+
+The current way to retrieve the data is to logon to *mongosh* and use a text query.
+
+Create a text index first with:
+
+```
+db.scrape.createIndex( { content: "text" } )
+```
+
+Then start a search with find
+
+```
+db.scrape.find( { $text: { $search: "your word here" } } )
+```
+
+[See the mongodb manual for further information](https://www.mongodb.com/docs/manual/reference/operator/query/text/)
