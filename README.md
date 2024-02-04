@@ -22,13 +22,15 @@ Start a MongoDB container with podman
 podman run -d --name scse-db --network scse -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=specialW0rdNow376 registry.hub.docker.com/library/mongo
 ```
 
-You need to set up a new user to use the correct database setup in main.py
+## Configure db via pythonscript
 
 Create the necessary user and db with the python script from the searchscrape/searchscrape subfolder
 
 ```
 python3 -c 'from config import setup_db; setup_db()'
 ```
+
+## Configure db manually
 
 Alternative: Connect to the db container and use *mongosh* to create the necessary user and db.
 
@@ -40,6 +42,12 @@ db.createUser({ user: "scrapeUser", pwd: passwordPrompt(), roles: [ { role: "rea
 ```
 
 Then set the same data in the searchscrape/searchscrape/config.py constants
+
+For fulltext search you should also define an index
+
+```
+db.scrape.createIndex( { content: "text" } )
+```
 
 # Run scraper to index
 
@@ -53,15 +61,7 @@ scrapy crawl thealexandrian
 
 Work in Progress
 
-The current way to retrieve the data is to logon to *mongosh* and use a text query.
-
-Create a text index first with:
-
-```
-db.scrape.createIndex( { content: "text" } )
-```
-
-Then start a search with find
+The current way to retrieve the data is to logon to *mongosh* and use a text query on the scrape collection directly.
 
 ```
 db.scrape.find( { $text: { $search: "your word here" } } )
