@@ -68,3 +68,16 @@ db.scrape.find( { $text: { $search: "your word here" } } )
 ```
 
 [See the mongodb manual for further information](https://www.mongodb.com/docs/manual/reference/operator/query/text/)
+
+# Architecture
+
+All the interesting stuff happens in the searchscrape/searchscrape directory:
+
+Individual spiders are located in *spiders* which contain the crawling instructions.
+
+The data is then transformed into items defined in *items.py* .
+
+According to the definition in *settings.py* the data pipelines in *pipelines.py* are called with the items. There the item is transformed into a mongodb entry.
+
+The database settings and helper functions are located in *config.py*.
+TODO: Refactor config.py into *settings.py* and a provider class.
