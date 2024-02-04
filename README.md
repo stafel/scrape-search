@@ -4,6 +4,10 @@ Scrape-search is a simple full text web search engine on top of MongoDB and Pyth
 
 Inspiration from [this tutorial on logrocket.com](https://blog.logrocket.com/scrape-website-python-scrapy-mongodb/)
 
+# Setup python environment
+
+In VSCode activate the command pallete, select command "Create environment", set it to use Python 3.10 or higher and use the requirements.txt in the root directory.
+
 # Setup containers
 
 Create a network
