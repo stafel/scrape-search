@@ -71,7 +71,9 @@ db.scrape.find( { $text: { $search: "your word here" } } )
 
 # Architecture
 
-All the interesting stuff happens in the searchscrape/searchscrape directory:
+## Scraping
+
+All the scraping happens in the searchscrape/searchscrape directory:
 
 Individual spiders are located in *spiders* which contain the crawling instructions.
 
@@ -81,3 +83,7 @@ According to the definition in *settings.py* the data pipelines in *pipelines.py
 
 The database settings and helper functions are located in *config.py*.
 TODO: Refactor config.py into *settings.py* and a provider class.
+
+## Searching
+
+TODO
